@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Samudra Kuliner adalah aplikasi katalog yang menghadirkan berbagai pilihan restoran dari seluruh Indonesia"
+    />
+    <meta name="theme-color" content="#0080FF" />
+    <link rel="apple-touch-icon" href="./icons/icon-192x192.png" />
+    <link rel="manifest" href="./app.webmanifest" />
+    <title>Samudra Kuliner</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <a href="#mainContent" class="skip-link">Skip To Content</a>
+    <header>
+      <div class="header-container">
+        <div class="container">
+          <!-- Navbar -->
+          <nav>
+            <div class="logo">
+              <a href="./index.html">
+                <div class="logo-container">
+                  <img src="./images/logo.png" alt="Samudra Kuliner" />
+                  <p class="logo-text">Samudra Kuliner</p>
+                </div>
+              </a>
+            </div>
+            <button id="drawer-toggle" aria-label="Open Navigation Drawer">
+              <div class="line-container">
+                <div class="line line-1"></div>
+                <div class="line line-2"></div>
+                <div class="line line-3"></div>
+              </div>
+            </button>
+            <ul class="nav-links">
+              <li><a href="#/home">Home</a></li>
+              <li><a href="#/favorite">Favorite</a></li>
+              <li>
+                <a
+                  href="https://irfandwisamudra.netlify.app"
+                  target="_blank"
+                  rel="noreferrer"
+                  >About Us</a
+                >
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <aside id="navigation-drawer">
+      <div class="drawer-header">
+        <button id="close-drawer" aria-label="Close Navigation Drawer">
+          <div class="line-container">
+            <div class="line line-1"></div>
+            <div class="line line-2"></div>
+          </div>
+        </button>
+      </div>
+      <ul class="drawer-links">
+        <li><a href="#/home">Home</a></li>
+        <li><a href="#/favorite">Favorite</a></li>
+        <li>
+          <a
+            href="https://irfandwisamudra.netlify.app"
+            target="_blank"
+            rel="noreferrer"
+            >About Us</a
+          >
+        </li>
+      </ul>
+    </aside>
+
+    <section class="hero">
+      <div class="container">
+        <h1 class="hero-title">Temukan Restoran Terbaik di Indonesia</h1>
+        <p class="hero-description">
+          Hanya di Samudra Kuliner, kamu bisa menemukan berbagai pilihan
+          restoran terbaik dari seluruh Indonesia dengan informasi yang lengkap
+          dan akurat.
+        </p>
+        <div class="hero-buttons">
+          <a href="#mainContent" class="btn-primary">
+            Jelajahi Restoran
+            <svg
+              class="icon"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 14 10"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M1 5h12m0 0L9 1m4 4L9 9"
+              />
+            </svg>
+          </a>
+          <a href="#tips" class="btn-secondary">Pelajari Tips Kuliner</a>
+        </div>
+      </div>
+    </section>
+
+    <main id="mainContent" class="container">
+      <h2 class="restaurant-title">Daftar Restoran</h2>
+      <div id="restaurants" class="restaurants"></div>
+    </main>
+
+    <culinary-tips title="Tips Menikmati Kuliner" id="tips"></culinary-tips>
+
+    <footer-bar copyright="Samudra Kuliner"></footer-bar>
+  </body>
+</html>
