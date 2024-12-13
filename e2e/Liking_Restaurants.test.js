@@ -32,6 +32,33 @@ Scenario('liking one restaurant', async ({ I }) => {
   assert.strictEqual(firstRestaurantTitle, likedRestaurantTitle);
 });
 
+Scenario('unliking one restaurant', async ({ I }) => {
+  I.see('Tidak ada restoran untuk ditampilkan.', '.no-data');
+
+  I.amOnPage('/');
+  I.seeElement('.restaurant-info a');
+  const firstRestaurant = locate('.restaurant-info a').first();
+  const firstRestaurantTitle = await I.grabTextFrom(firstRestaurant);
+  I.click(firstRestaurant);
+
+  I.seeElement('#likeButton');
+  I.click('#likeButton');
+
+  I.amOnPage('/#/favorite');
+  I.seeElement('.restaurant-item');
+  const likedRestaurantTitle = await I.grabTextFrom('.restaurant__title');
+  assert.strictEqual(firstRestaurantTitle, likedRestaurantTitle);
+
+  I.click(firstRestaurant);
+
+  I.seeElement('#likeButton');
+  I.click('#likeButton');
+
+  I.amOnPage('/#/favorite');
+
+  I.see('Tidak ada restoran untuk ditampilkan.', '.no-data');
+});
+
 Scenario('searching restaurants', async ({ I }) => {
   I.see('Tidak ada restoran untuk ditampilkan.', '.no-data');
 
@@ -73,7 +100,10 @@ Scenario('searching restaurants', async ({ I }) => {
     '.restaurant-item'
   );
 
-  assert.strictEqual(matchingRestaurants.length, visibleSearchedLikedRestaurants);
+  assert.strictEqual(
+    matchingRestaurants.length,
+    visibleSearchedLikedRestaurants
+  );
 
   for (let i = 0; i < matchingRestaurants.length; i++) {
     // eslint-disable-next-line no-await-in-loop
