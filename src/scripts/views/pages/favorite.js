@@ -1,28 +1,21 @@
 import FavoriteRestaurantIdb from '../../data/favorite-restaurant-idb';
-import { createRestaurantItemTemplate } from '../templates/template-creator';
+import FavoriteRestaurantView from './liked-restaurants/favorite-restaurant-view';
+import FavoriteRestaurantShowPresenter from './liked-restaurants/favorite-restaurant-show-presenter';
+import FavoriteRestaurantSearchPresenter from './liked-restaurants/favorite-restaurant-search-presenter';
+
+const view = new FavoriteRestaurantView();
 
 const Favorite = {
   async render() {
-    return `
-      <h2 class="restaurant-title">Restoran Favorit</h2>
-      <div id="restaurants" class="restaurants"></div>
-    `;
+    return view.getTemplate();
   },
 
   async afterRender() {
-    const restaurants = await FavoriteRestaurantIdb.getAllRestaurants();
-    const restaurantContainer = document.getElementById('restaurants');
-
-    if (restaurants && restaurants.length > 0) {
-      restaurants.forEach((restaurant) => {
-        restaurantContainer.innerHTML +=
-          createRestaurantItemTemplate(restaurant);
-      });
-    } else {
-      restaurantContainer.innerHTML = `
-        <h3 class="no-data">Belum ada restoran yang ditambahkan ke favorit.</h3>
-      `;
-    }
+    new FavoriteRestaurantShowPresenter({ view, favoriteRestaurants: FavoriteRestaurantIdb });
+    new FavoriteRestaurantSearchPresenter({
+      view,
+      favoriteRestaurants: FavoriteRestaurantIdb,
+    });
   },
 };
 
