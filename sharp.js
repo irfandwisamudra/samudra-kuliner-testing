@@ -2,36 +2,52 @@ const sharp = require('sharp');
 const fs = require('fs');
 const path = require('path');
 
-const target = path.resolve(__dirname, 'src/public/images');
-const destination = path.resolve(__dirname, 'dist/images');
+const targets = [
+  {
+    src: path.resolve(__dirname, 'src/public/images'),
+    dest: path.resolve(__dirname, 'dist/images'),
+  },
+  {
+    src: path.resolve(__dirname, 'src/public/images/heros'),
+    dest: path.resolve(__dirname, 'dist/images/heros'),
+  },
+];
 
-if (!fs.existsSync(destination)) {
-  fs.mkdirSync(destination);
-}
-
-fs.readdirSync(target).forEach((image) => {
-  const imagePath = path.join(target, image);
-
-  // hanya memproses file gambar, bukan folder
-  if (fs.lstatSync(imagePath).isFile()) {
-    // mengubah ukuran gambar dengan lebar 800px, dengan prefix -large.jpg
-    sharp(`${target}/${image}`)
-      .resize(800)
-      .toFile(
-        path.resolve(
-          __dirname,
-          `${destination}/${image.split('.').slice(0, -1).join('.')}-large.jpg`
-        )
-      );
-
-    // mengubah ukuran gambar dengan lebar 480px, dengan prefix -small.jpg
-    sharp(`${target}/${image}`)
-      .resize(480)
-      .toFile(
-        path.resolve(
-          __dirname,
-          `${destination}/${image.split('.').slice(0, -1).join('.')}-small.jpg`
-        )
-      );
+targets.forEach(({ src: target, dest: destination }) => {
+  if (!fs.existsSync(destination)) {
+    fs.mkdirSync(destination, { recursive: true }); // subfolder dibuat jika belum ada
   }
+
+  fs.readdirSync(target).forEach((image) => {
+    const imagePath = path.join(target, image);
+
+    // hanya memproses file gambar, bukan folder
+    if (fs.lstatSync(imagePath).isFile()) {
+      // mengubah ukuran gambar dengan lebar 800px, dengan prefix -large.jpg
+      sharp(imagePath)
+        .resize(800)
+        .toFile(
+          path.resolve(
+            __dirname,
+            `${destination}/${image
+              .split('.')
+              .slice(0, -1)
+              .join('.')}-large.jpg`
+          )
+        );
+
+      // mengubah ukuran gambar dengan lebar 480px, dengan prefix -small.jpg
+      sharp(imagePath)
+        .resize(480)
+        .toFile(
+          path.resolve(
+            __dirname,
+            `${destination}/${image
+              .split('.')
+              .slice(0, -1)
+              .join('.')}-small.jpg`
+          )
+        );
+    }
+  });
 });
