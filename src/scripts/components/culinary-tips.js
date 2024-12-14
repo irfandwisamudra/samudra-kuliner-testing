@@ -93,7 +93,11 @@ class CulinaryTips extends HTMLElement {
         <div class="tips-content">
           <div class="tips-item">
             <div class="tips-img">
-              <img src="./images/explore-local.png" alt="Explore Local" />
+              <picture>
+                <source media="(max-width: 600px)" srcset="./images/explore-local-small.jpg">
+                <img src="./images/explore-local-large.jpg" 
+                  alt="Explore Local">
+              </picture>
             </div>
             <h3>Eksplor Kuliner Lokal</h3>
             <p>
@@ -104,7 +108,11 @@ class CulinaryTips extends HTMLElement {
           </div>
           <div class="tips-item">
             <div class="tips-img">
-              <img src="./images/try-new-flavors.png" alt="Try New Flavors" />
+              <picture>
+                <source media="(max-width: 600px)" srcset="./images/try-new-flavors-small.jpg">
+                <img src="./images/try-new-flavors-large.jpg"
+                  alt="Try New Flavors">
+              </picture>
             </div>
             <h3>Coba Rasa Baru</h3>
             <p>
@@ -114,7 +122,11 @@ class CulinaryTips extends HTMLElement {
           </div>
           <div class="tips-item">
             <div class="tips-img">
-              <img src="./images/food-reviews.png" alt="Read Reviews" />
+              <picture>
+                <source media="(max-width: 600px)" srcset="./images/food-reviews-small.jpg">
+                <img src="./images/food-reviews-large.jpg"
+                  alt="Read Reviews">
+              </picture>
             </div>
             <h3>Baca Ulasan</h3>
             <p>

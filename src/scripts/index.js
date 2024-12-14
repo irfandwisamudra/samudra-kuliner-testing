@@ -3,7 +3,8 @@ import '../styles/main.scss';
 import './components/index.js';
 import App from './views/app';
 import swRegister from './utils/sw-register';
-import gsap from 'gsap';
+import 'lazysizes';
+import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 
 document.addEventListener('DOMContentLoaded', () => {
   const drawerToggle = document.getElementById('drawer-toggle');
@@ -29,8 +30,3 @@ document.addEventListener('DOMContentLoaded', () => {
     swRegister();
   });
 });
-
-// Menambahkan animasi GSAP untuk hero section
-gsap.from('.hero-title', { opacity: 0, y: -50, duration: 1 });
-gsap.from('.hero-description', { opacity: 0, y: 30, duration: 1, delay: 0.5 });
-gsap.from('.hero-buttons', { opacity: 0, y: 20, duration: 1, delay: 1 });
